@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+from prometheus_client import start_http_server, Gauge
+from time import sleep
+
+HTTP_PORT = 9401
+
+if __name__ == '__main__':
+    # Serve metrics over HTTP.
+    print("Starting prometheus-orgbackup-exporter on port",
+            "{}...".format(HTTP_PORT), end='')
+    start_http_server(HTTP_PORT)
+    print(" OK.")
+
+    while True:
+        # TODO: for every repository in $, use borg's JSON interface and export
+        # its content - or user the python bindings if they're stable enough.
+        print("Not implemented yet.")
+        sleep(1)
