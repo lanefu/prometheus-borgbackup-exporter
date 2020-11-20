@@ -49,6 +49,8 @@ if __name__ == '__main__':
         for entry in entries:
             if not entry.is_dir():
                 print(">> Ignoring {} since it is not a directory.".format(entry.name))
+            elif entry.name[0] == '.':
+                print(">> Ignoring {} since it is a dot directory.".format(entry.name))
             else:
                 repository_name = entry.name
                 repository_path = entry.path
