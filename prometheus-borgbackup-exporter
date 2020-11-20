@@ -57,7 +57,9 @@ if __name__ == '__main__':
 
                 try:
                     print(">> Querying borg for {}...".format(repository_name), end='')
-                    raw_borg_json = subprocess.check_output(['borg', 'info', '--json', repository_path])
+                    env = os.environ
+                    env["BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK"] = "yes"
+                    raw_borg_json = subprocess.check_output(['borg', 'info', '--json', repository_path], env=env)
                     info = json.loads(raw_borg_json)
 
                     stats = info['cache']['stats']
